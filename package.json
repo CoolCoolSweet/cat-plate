@@ -43,7 +43,8 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {}
   },
   "browserslist": {
     "production": [
@@ -58,7 +59,7 @@
     ]
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
+    "*.{js,jsx,ts,tsx}": [
       "yarn lint"
     ]
   }
