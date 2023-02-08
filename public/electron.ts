@@ -1,6 +1,10 @@
 // ./public/electron.ts
 const path = require("path");
-
+const {
+  default: installExtension,
+  REACT_DEVELOPER_TOOLS,
+  REDUX_DEVTOOLS,
+} = require("electron-devtools-installer");
 const { app, BrowserWindow } = require("electron");
 const isDev = require("electron-is-dev");
 
@@ -30,7 +34,15 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(createWindow);
+app.whenReady().then(async () => {
+  await installExtension(REDUX_DEVTOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log("An error occurred: ", err));
+  await installExtension(REACT_DEVELOPER_TOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log("An error occurred: ", err));
+  createWindow();
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bars to stay active until the user quits
