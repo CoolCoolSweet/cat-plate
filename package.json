@@ -25,6 +25,8 @@
     "concurrently": "^7.6.0",
     "electron": "^23.0.0",
     "electron-devtools-installer": "^3.2.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.1",
     "wait-on": "^7.0.1"
   },
   "scripts": {
@@ -34,7 +36,8 @@
     "eject": "react-scripts eject",
     "dev": "concurrently -k \"yarn start\" \"yarn:electron\"",
     "electron": "wait-on tcp:3000 && electron .",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +55,11 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "yarn lint"
     ]
   }
 }
